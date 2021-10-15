@@ -102,10 +102,10 @@
         <div class="card-footer">
             <div class="row justify-content-between">
                 <div class="col-md-6">
-                    <p>{{ $products->links() }}</p>
+                    <p>df</p>
                 </div>
                 <div class="col-md-2">
-
+                    {{ $products->links()}}
                 </div>
             </div>
         </div>
