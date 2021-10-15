@@ -14,7 +14,7 @@ class ProductVariant extends Model
 
     public function myVariant()
     {
-        return $this->belongsTo('App\Models\Variant');
+        return $this->belongsToMany('App\Models\Variant', 'variant_id', 'id');
     }
 
     public function productVariantsPrice()

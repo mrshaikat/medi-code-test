@@ -12,6 +12,6 @@ class Variant extends Model
 
     public function productVariants()
     {
-        $this->hasMany('App\Models\ProductVariant');
+        return $this->hasMany('App\Models\ProductVariant');
     }
 }

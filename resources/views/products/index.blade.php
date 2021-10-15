@@ -16,6 +16,21 @@
                 <div class="col-md-2">
                     <select name="variant" id="" class="form-control">
 
+                        <option value="" disabled>Color</option>
+
+
+                        @foreach ( $variant as $variant_data )
+
+
+                           @foreach ( $variant_data->productVariants as $data )
+
+
+                           <option value="">{{ $data->variant }}</option>
+
+                            @endforeach
+
+                        @endforeach
+
                     </select>
                 </div>
 

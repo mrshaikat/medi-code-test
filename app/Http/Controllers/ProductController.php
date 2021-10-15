@@ -19,6 +19,7 @@ class ProductController extends Controller
     {
         $all_product = Product::paginate(5);
         $all_product_count = Product::count();
+        $all_variant = Variant::all();
 
         // foreach ($all_product as $product) {
 
@@ -26,9 +27,19 @@ class ProductController extends Controller
         //         dd($variant->productVariantOne->variant);
         //     }
         // }
+
+        // foreach ($all_variant as $variant) {
+        //     foreach ($variant->productVariants as $data) {
+        //         dd($data->variant);
+        //     }
+        // }
+
+
+
         return view('products.index', [
             'products' => $all_product,
             'count' => $all_product_count,
+            'variant' => $all_variant,
         ]);
     }
 
