@@ -17,7 +17,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $all_product = Product::paginate(5);
+
+        // foreach ($all_product as $product) {
+
+        //     foreach ($product->productVariantPrices as $variant) {
+        //         dd($variant->productVariantOne->variant);
+        //     }
+        // }
+        return view('products.index', [
+            'products' => $all_product,
+        ]);
     }
 
     /**
@@ -39,7 +49,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
 
@@ -51,7 +60,6 @@ class ProductController extends Controller
      */
     public function show($product)
     {
-
     }
 
     /**
