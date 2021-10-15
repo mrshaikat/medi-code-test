@@ -102,7 +102,7 @@
         <div class="card-footer">
             <div class="row justify-content-between">
                 <div class="col-md-6">
-                    <p>df</p>
+                    <p>showing  {{ $products->count()}} out of {{ $count }}</p>
                 </div>
                 <div class="col-md-2">
                     {{ $products->links()}}

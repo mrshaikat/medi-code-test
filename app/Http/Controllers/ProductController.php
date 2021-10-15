@@ -18,6 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         $all_product = Product::paginate(5);
+        $all_product_count = Product::count();
 
         // foreach ($all_product as $product) {
 
@@ -27,6 +28,7 @@ class ProductController extends Controller
         // }
         return view('products.index', [
             'products' => $all_product,
+            'count' => $all_product_count,
         ]);
     }
 
