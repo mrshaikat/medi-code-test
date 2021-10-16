@@ -17,22 +17,41 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $all_product = Product::paginate(5);
+        $all_product = Product::paginate(2);
         $all_product_count = Product::count();
-        $all_variant = Variant::all();
 
-        // foreach ($all_product as $product) {
+        $all_variant = ProductVariant::groupBy('variant')->get();
+        return view('products.index', [
+            'products' => $all_product,
+            'count' => $all_product_count,
+            'variant' => $all_variant,
+        ]);
+    }
 
-        //     foreach ($product->productVariantPrices as $variant) {
-        //         dd($variant->productVariantOne->variant);
-        //     }
-        // }
 
-        // foreach ($all_variant as $variant) {
-        //     foreach ($variant->productVariants as $data) {
-        //         dd($data->variant);
-        //     }
-        // }
+    /**
+     * Product Search
+     */
+
+    public function search(Request $request)
+    {
+        $products = Product::when($request->title != null, function ($query) use ($request) {
+            return $query->where('title',  $request->title);
+        })->when($request->variant != null, function ($query) use ($request) {
+            return $query->whereHas('productVariant', function ($q) use ($request) {
+                return $q->where('variant', $request->variant);
+            });
+        })->when($request->price_from != null && $request->price_to != null, function ($query) use ($request) {
+            return $query->whereHas('productVariantPrices', function ($q) use ($request) {
+                return $q->where('price', '>=', $request->price_from)->where('price', '<=', $request->price_to);
+            });
+        })->when($request->date != null, function ($query) use ($request) {
+            return $query->where('created_at',  $request->date);
+        })->get();
+
+        $all_product = Product::paginate(2);
+        $all_product_count = Product::count();
+        $all_variant = ProductVariant::groupBy('variant')->get();
 
 
 
@@ -42,6 +61,8 @@ class ProductController extends Controller
             'variant' => $all_variant,
         ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

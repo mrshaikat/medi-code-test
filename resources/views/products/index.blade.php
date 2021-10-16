@@ -8,7 +8,7 @@
 
 
     <div class="card">
-        <form action="" method="get" class="card-header">
+        <form action="{{ route('product.search') }}" method="get" class="card-header">
             <div class="form-row justify-content-between">
                 <div class="col-md-2">
                     <input type="text" name="title" placeholder="Product Title" class="form-control">
@@ -16,18 +16,15 @@
                 <div class="col-md-2">
                     <select name="variant" id="" class="form-control">
 
-                        <option value="" disabled>Color</option>
 
 
-                        @foreach ( $variant as $variant_data )
+                        @foreach ( $variant as $data )
 
 
-                           @foreach ( $variant_data->productVariants as $data )
 
 
                            <option value="">{{ $data->variant }}</option>
 
-                            @endforeach
 
                         @endforeach
 
@@ -70,7 +67,7 @@
 
 
                     <tr>
-                        <td>{{ ++$loop->index }}</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>{{ $product->title }}<br> Created at : {{ $product->created_at->diffForHumans() }}</td>
                         <td>{{ $product->description }}</td>
                         <td>

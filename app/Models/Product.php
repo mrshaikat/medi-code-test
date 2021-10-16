@@ -14,4 +14,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductVariantPrice', 'product_id', 'id');
     }
+
+    public function productVariant()
+    {
+        return $this->hasMany('App\Models\ProductVariant', 'product_id', 'id');
+    }
 }

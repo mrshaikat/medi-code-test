@@ -1,6 +1,8 @@
 <template>
-    <section>
-        <div class="row">
+
+        <section>
+
+            <div class="row">
             <div class="col-md-6">
                 <div class="card shadow mb-4">
                     <div class="card-body">
@@ -93,7 +95,9 @@
 
         <button @click="saveProduct" type="submit" class="btn btn-lg btn-primary">Save</button>
         <button type="button" class="btn btn-secondary btn-lg">Cancel</button>
+
     </section>
+
 </template>
 
 <script>
@@ -190,6 +194,7 @@ export default {
 
 
             axios.post('/product', product).then(response => {
+
                 console.log(response.data);
             }).catch(error => {
                 console.log(error);
